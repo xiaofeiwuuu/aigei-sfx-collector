@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "Aigei SFX Collector",
+  "version": "0.1.0",
+  "description": "在爱给网音效页面注入「直接下载」按钮,支持单条与本页批量下载试听音频。",
+  "permissions": [
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://*.aigei.com/*"
+  ],
+  "action": {
+    "default_title": "Aigei SFX Collector"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.aigei.com/*"
+      ],
+      "js": [
+        "inject.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://www.aigei.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "minimum_chrome_version": "111"
+}
